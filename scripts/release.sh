@@ -22,6 +22,7 @@ case "$TYPE" in
     major)
         major=$((major + 1))
         new_tag="v$major.0.0"
+        sed -i -E "s/(github.com\/tomfran\/typo\/)v[0-9]+/\1v$major/" go.mod
         ;;
     manual)
         read -p "Enter new tag: " new_tag
