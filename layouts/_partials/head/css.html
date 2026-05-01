@@ -1,0 +1,16 @@
+{{ $colorPalette := index hugo.Data.themes (.Site.Params.colorPalette | default "default") }}
+
+{{ if not $colorPalette }}
+  {{ errorf "Color palette '%s' not found in data/themes" .Site.Params.colorPalette }}
+{{ end }}
+
+{{ $opts := dict "vars" $colorPalette }}
+{{ with resources.Get "css/main.css" | css.Build $opts }}
+  {{ if hugo.IsDevelopment }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" media="all">
+  {{ else }}
+    {{ with . | fingerprint }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" media="all">
+    {{ end }}
+  {{ end }}
+{{ end }}

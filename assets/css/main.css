@@ -1,3 +1,11 @@
+@import "reset.css";
+@import "vars.css";
+@import "utils.css";
+@import "fonts.css";
+@import "syntax-highlighting.css";
+@import "custom.css";
+@import "hugo:vars";
+
 :root {
   color-scheme: light dark;
 

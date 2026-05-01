@@ -1,3 +1,3 @@
-module github.com/tomfran/typo/v3
+module github.com/crnh/tekst
 
 go 1.20

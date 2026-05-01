@@ -1,11 +1,9 @@
-name = 'Typo'
+name = 'Tekst'
 license = 'MIT'
-licenselink = 'https://github.com/tomfran/typo/blob/main/LICENSE'
+licenselink = 'https://github.com/crnh/tekst/blob/main/LICENSE'
 description = 'A simple Hugo theme'
 
-homepage = 'https://github.com/tomfran/typo'
-
-demosite = 'https://tomfran.github.io/typo-wiki/'
+homepage = 'https://github.com/crnh/tekst'
 
 tags = [
   "responsive",
@@ -32,5 +30,4 @@ features = [
 ]
 
 [author]
-name = 'Francesco Tomaselli'
-homepage = 'https://tomfran.github.io/typo-wiki/'
+name = 'Corné Haasjes'
