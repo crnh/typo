@@ -1,15 +1,19 @@
-{{ $colorPalette := index hugo.Data.themes (.Site.Params.colorPalette | default "default") }}
+{{- $colorPalette := index hugo.Data.themes (.Site.Params.colorPalette | default "default") -}}
 
-{{ if not $colorPalette }}
-  {{ errorf "Color palette '%s' not found in data/themes" .Site.Params.colorPalette }}
-{{ end }}
+{{- if not $colorPalette -}}
+  {{- errorf "Color palette '%s' not found in data/themes" .Site.Params.colorPalette -}}
+{{- end -}}
 
-{{ $opts := dict "vars" $colorPalette }}
-{{ with resources.Get "css/main.css" | css.Build $opts }}
+{{- $fonts := resources.Get "css/fonts.css" -}}
+
+{{- $opts := dict "vars" $colorPalette -}}
+{{- $styles := resources.Get "css/main.css" | css.Build $opts -}}
+
+{{ with slice $fonts $styles | resources.Concat "css/bundle.css" }}
   {{ if hugo.IsDevelopment }}
     <link rel="stylesheet" href="{{ .RelPermalink }}" media="all">
   {{ else }}
-    {{ with . | fingerprint }}
+    {{ with . | minify | fingerprint }}
       <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" media="all">
     {{ end }}
   {{ end }}
