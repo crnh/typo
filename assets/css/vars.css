@@ -13,8 +13,9 @@
 
   /* Typography */
   --font-body:
-    "Literata", Georgia, Cambria, "Noto Serif", "Droif Serif", ui-serif, serif;
-  --font-mono: "Monaspace", ui-monospace, monospace;
+    InterVariable, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-mono: ui-monospace, monospace;
 
   --h1-margin-top: 2rem;
   --h1-margin-bottom: 1.5rem;
@@ -64,6 +65,13 @@
   --table-cell-padding: 0.5rem;
   --table-margin-top: 2rem;
   --table-margin-bottom: 2rem;
+}
+
+@supports (font-variation-settings: normal) {
+  :root {
+    --font-body: InterVariable, sans-serif;
+    --font-mono: ui-monospace, monospace;
+  }
 }
 
 @media screen and (max-width: 1024px) {
