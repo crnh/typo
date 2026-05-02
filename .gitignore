@@ -21,6 +21,9 @@
 # Go workspace file
 go.work
 
+# NPM
+node_modules/
+
 ### Hugo ###
 # Generated files by hugo
 /public/
@@ -58,7 +61,8 @@ hugo.linux
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*

@@ -1,4 +1,4 @@
-# How to contribute to Typo
+# How to contribute to Tekst
 
 The goal of this theme is to be as simple as possible, hence adding or changing existing features needs some thought.
 
@@ -22,6 +22,7 @@ You should avoid breaking existing configs when possible, or you should have a g
 When introducing a styling change, aim to keep it disabled by default to avoid tweaking people's websites without config changes.
 
 ---
+
 <br>
 Thank you, <br>
-Francesco
+Corné
