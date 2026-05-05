@@ -1,0 +1,5 @@
+{{- $filename := printf "emoji/%s.svg" . -}}
+{{- $image := resources.Get $filename -}}
+{{- $content := $image.Content | safeHTML -}}
+
+<span class="emoji" aria-hidden="true">{{ $content }}</span>

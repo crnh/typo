@@ -7,11 +7,11 @@
 {{ if or .Site.Params.homeIntroTitle .Site.Params.homeIntroContent }}
 <div class="intro">
     {{ with .Site.Params.homeIntroTitle }}
-    <h1>{{ . }}</h1>
+    <h1>{{ . | page.RenderString }}</h1>
     {{ end }}
 
     {{ with .Site.Params.homeIntroContent }}
-    <p>{{ . | markdownify }}</p>
+    <p>{{ . | page.RenderString }}</p>
     {{ end }}
 </div>
 {{ end }}
@@ -36,7 +36,7 @@
 
 <div class="list-container">
     {{ with .Site.Params.homeCollectionTitle}}
-    <h1> {{ . }} </h1>
+    <h1> {{ . | page.RenderString }} </h1>
     {{ end }}
 
     {{ $pages := where .Site.RegularPages "Section" .Site.Params.homeCollection
@@ -49,8 +49,12 @@
 
     {{ $paginator := .Paginate $pages $paginationSize }}
 
+
+    {{ with .Site.Params.homeCollectionEntry | default "post-entry" }}
+    {{ $entryTemplate := printf "components/%s.html" . }}
     {{ range $index, $page := $paginator.Pages }}
-    {{ partial "post-entry.html" $page}}
+    {{ partial $entryTemplate $page}}
+    {{ end }}
     {{ end }}
 
     {{ partial "pagination-controls.html" $paginator}}

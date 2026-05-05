@@ -315,6 +315,13 @@ footer a {
   align-items: center;
 }
 
+.pagination-control a {
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .page-number {
   min-width: 3rem;
   margin-left: 0.5rem;
@@ -440,13 +447,14 @@ footer a {
   display: flex;
   min-height: 100%;
   padding: 0.5rem;
+  float: right;
 }
 
 .single-pagination-container-prev {
   display: flex;
   min-height: 100%;
   padding: 0.5rem;
-  float: right;
+  float: left;
 }
 
 /* Table of contents */

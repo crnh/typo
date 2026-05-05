@@ -1,11 +1,14 @@
 {{ if gt .TotalPages 1 }}
 <div class="pagination">
     <div class="pagination-control">
-        {{ if .HasPrev }}
-        <a href="{{ .Prev.URL | absURL }}">
-            prev
+    {{ if .HasPrev }}
+        <a href="{{ .First.URL | absURL }}">
+            &laquo;
         </a>
-        {{ end }}
+        <a href="{{ .Prev.URL | absURL }}">
+            &#x2039;
+        </a>
+    {{ end }}
     </div>
     <div class="page-number">
         <p>
@@ -13,11 +16,14 @@
         </p>
     </div>
     <div class="pagination-control">
-        {{ if .HasNext }}
+    {{ if .HasNext }}
         <a href="{{ .Next.URL | absURL }}">
-            next
+            &#x203A;
         </a>
-        {{ end }}
+        <a href="{{ .Last.URL | absURL }}">
+            &raquo;
+        </a>
+    {{ end }}
     </div>
 </div>
 {{ end }}

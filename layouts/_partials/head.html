@@ -1,6 +1,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 
+{{/* Init theme script */}}
+{{- with resources.Get "js/init-theme.ts" | js.Build (dict "minify" true) -}}
+<script>
+  {{ .Content | safeJS }}
+</script>
+{{- end }}
+
 {{/* Head start hook */}}
 {{ partial "functions/get_hook.html" (dict "hook" "head_start" "context" .) }}
 
