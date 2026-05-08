@@ -14,6 +14,6 @@
     {{ $hook = printf "%s.html" $hook }}
 {{ end }}
 
-{{ if fileExists (path.Join "layouts/_partials/hooks" $hook) }}   
+{{ if templates.Exists (path.Join "_partials/hooks" $hook) }}   
     {{ partial (path.Join "hooks" $hook) $context }}
 {{ end }}
