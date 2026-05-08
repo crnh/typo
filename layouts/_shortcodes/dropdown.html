@@ -1,0 +1,6 @@
+{{ $title := .Get 0 }}
+
+<details>
+  <summary>{{ $title | strings.FirstUpper }}</summary>
+  <p>{{ .Inner | page.RenderString }}</p>
+</details>

@@ -8,6 +8,5 @@ try {
 }
 if (stored === "dark" || stored === "light") {
   const root = document.documentElement;
-  root.classList.remove("light", "dark");
-  root.classList.add(stored);
+  root.dataset.theme = stored;
 }

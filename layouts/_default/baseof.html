@@ -32,5 +32,7 @@
   {{ end }}
 </body>
 
-<script defer src="{{ "js/copy-code.js" | relURL }}"></script>
+{{- with resources.Get "js/copy-code.ts" | js.Build (dict "minify" true) | fingerprint }}
+<script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" type="module" defer></script>
+{{- end }}
 </html>

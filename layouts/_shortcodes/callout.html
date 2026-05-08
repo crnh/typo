@@ -1,0 +1,8 @@
+{{ $title := .Get 0 }}
+
+<div class="callout">
+    <div class="callout-head">
+        <p>{{ $title | strings.FirstUpper }}</p>
+    </div>
+    <div class="callout-body"><p>{{ .Inner | page.RenderString }}</p></div>
+</div>

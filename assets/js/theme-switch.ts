@@ -25,8 +25,7 @@ function setTheme(theme: Theme) {
     // ignore
   }
   const root = document.documentElement;
-  root.classList.remove("light", "dark");
-  root.classList.add(theme);
+  root.dataset.theme = theme;
 }
 
 class ThemeSwitch extends HTMLElement {

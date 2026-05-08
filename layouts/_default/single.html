@@ -63,8 +63,10 @@
     
     {{- if .Param "toc" }}
       <aside class="toc">
-        <p><strong>Table of contents</strong></p>
+      <details class="toc">
+        <summary><strong>Table of contents</strong></summary>
         {{ .TableOfContents }}
+      </details>
       </aside>
     {{- end }}
     
@@ -86,13 +88,16 @@
   {{ if .Store.Get "hasMermaid" }}
   {{ $mermaidDarkTheme := default "dark" (or .Params.mermaidDarkTheme .Site.Params.mermaidDarkTheme) }}
   {{ $mermaidTheme := default "default" (or .Params.mermaidTheme .Site.Params.mermaidTheme) }}
+  {{- with resources.Get "js/mermaid.js" | js.Build (dict "minify" true) | fingerprint -}}
   <script defer
     type="module"
     id="mermaid_script"
     data-light-theme="{{ $mermaidTheme }}"
     data-dark-theme="{{ $mermaidDarkTheme }}"
-    src='{{ "js/mermaid.js" | relURL }}'>
+    src="{{ .RelPermalink }}"
+    integrity="{{ .Data.Integrity }}">
   </script>
+  {{- end -}}
   {{ end }}
 
   {{/* Next prev controls */}}

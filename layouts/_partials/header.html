@@ -9,9 +9,16 @@
     {{ with site.Menus.main }}
     <nav class="header-menu">
         {{ range . }}
-        {{ if $.IsMenuCurrent .Menu . }}
+        {{- $ariaCurrent := "" -}}
+        {{- if $.IsMenuCurrent .Menu . -}}
+        {{- $ariaCurrent = "page" -}}
+        {{- else if $.HasMenuCurrent .Menu . -}}
+        {{- $ariaCurrent = "true" -}}
+        {{- end -}}
+
+        {{ if $ariaCurrent }}
         <p class="small bold">
-            <a aria-current="page" href="{{ .URL }}">
+            <a aria-current="{{ $ariaCurrent }}" href="{{ .URL }}">
                 /{{ .Name }}
             </a>
         </p>

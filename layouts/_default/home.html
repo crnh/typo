@@ -50,8 +50,8 @@
     {{ $paginator := .Paginate $pages $paginationSize }}
 
 
-    {{ with .Site.Params.homeCollectionEntry | default "post-entry" }}
-    {{ $entryTemplate := printf "components/%s.html" . }}
+    {{ with .Site.Params.homeCollectionEntry | default "post" }}
+    {{ $entryTemplate := printf "entries/%s.html" . }}
     {{ range $index, $page := $paginator.Pages }}
     {{ partial $entryTemplate $page}}
     {{ end }}
