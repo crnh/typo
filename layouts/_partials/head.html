@@ -8,10 +8,15 @@
 </script>
 {{- end }}
 
+{{/* Preload fonts */}}
+{{ range resources.Match "fonts/*.woff2" }}
+  <link rel="preload" href="{{ .RelPermalink }}" type="font/woff2" as="font" crossorigin>
+{{ end }}
+
 {{/* Head start hook */}}
 {{ partial "functions/get_hook.html" (dict "hook" "head_start" "context" .) }}
 
-{{ partial "favicons.html" . }}
+{{ partialCached "favicons.html" . }}
 
 {{ with .OutputFormats.Get "rss" -}}
 {{ printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
