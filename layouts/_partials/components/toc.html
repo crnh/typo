@@ -1,0 +1,10 @@
+{{/* Table of Contents */}}
+    
+{{- if .Param "toc" }}
+    <aside>
+    <details class="toc">
+    <summary><strong>Table of contents</strong></summary>
+    {{ .TableOfContents }}
+    </details>
+    </aside>
+{{- end }}

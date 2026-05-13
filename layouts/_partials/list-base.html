@@ -2,7 +2,13 @@
 
     {{ partial "breadcrumbs.html" . }}
 
-    {{ partial "post-title.html" . }}
+    <h1 {{ if .IsPage }}class="single-title"{{ end }}>
+    {{ with .Params.icon }}
+        {{ partial "components/emoji.html" . }}
+    {{ end }}
+    {{ .Title }}
+    </h1>
+    
     {{ .Content }}
 
     {{ $paginationSize := 1}}
