@@ -2,12 +2,7 @@
 
     {{ partial "breadcrumbs.html" . }}
 
-    <h1 {{ if .IsPage }}class="single-title"{{ end }}>
-    {{ with .Params.icon }}
-        {{ partial "components/emoji.html" . }}
-    {{ end }}
-    {{ .Title }}
-    </h1>
+    {{ partial "components/post-title.html" . }}
     
     {{ .Content }}
 

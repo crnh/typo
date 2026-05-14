@@ -332,6 +332,10 @@ footer {
   max-height: var(--footer-height);
 }
 
+footer p {
+  text-align: center;
+}
+
 footer a {
   font-family: var(--font-mono);
   margin-left: 0.2rem;
@@ -843,7 +847,7 @@ header:not(:has(.single-subsummary)) .badges {
 }
 
 .badge.default:hover,
-.btn.default:hover {
+.btn.default:hover:not([disabled]) {
   background: var(--content-primary);
   color: var(--background);
 }
@@ -856,7 +860,7 @@ header:not(:has(.single-subsummary)) .badges {
 }
 
 .badge.white:hover,
-.btn.white:hover {
+.btn.white:hover:not([disabled]) {
   border-color: var(--content-primary);
   background: var(--background);
   color: var(--content-primary);

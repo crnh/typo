@@ -11,7 +11,7 @@
     <header class="single-intro-container">
         {{- /* Title and Summary */}}
         
-        <h1 class="single-title">{{ .Title }}</h1>
+        {{ partial "components/post-title.html" . }}
         {{- with .Param "summary" }}
         <p class="single-summary">{{ . | markdownify }}</p>
         {{- end }}
