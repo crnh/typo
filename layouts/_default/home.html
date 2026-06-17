@@ -1,24 +1,22 @@
 {{ define "main" }}
 
-{{ .Content }}
-
 {{/* Intro summary section */}}
 
-{{ if or .Site.Params.homeIntroTitle .Site.Params.homeIntroContent }}
+{{ if or .Title .Content }}
 <div class="intro">
-    {{ with .Site.Params.homeIntroTitle }}
+    {{ with .Title }}
     <h1>{{ . | page.RenderString }}</h1>
     {{ end }}
 
-    {{ with .Site.Params.homeIntroContent }}
-    <p>{{ . | page.RenderString }}</p>
+    {{ with .Content }}
+    {{ . }}
     {{ end }}
 </div>
 {{ end }}
 
 {{/* Social Icons */}}
 
-{{ with site.Params.social }}
+{{ with .Params.social }}
 <div class="social-icons">
     {{- range . }}
     <a href="{{ trim .url " " | safeURL }}" target="_blank"
@@ -32,25 +30,25 @@
 
 {{/* Collection Section */}}
 
-{{ if .Site.Params.homeCollection }}
+{{ with .Params.collection }}
 
 <div class="list-container">
-    {{ with .Site.Params.homeCollectionTitle}}
+    {{ with .title }}
     <h1> {{ . | page.RenderString }} </h1>
     {{ end }}
 
-    {{ $pages := where .Site.RegularPages "Section" .Site.Params.homeCollection
+    {{ $pages := where $.Site.RegularPages "Section" .name
     }}
 
     {{ $paginationSize := 1}}
-    {{ if (gt .Site.Params.paginationSize 0) }}
-    {{ $paginationSize = .Site.Params.paginationSize }}
+    {{ if (gt $.Site.Params.paginationSize 0) }}
+    {{ $paginationSize = $.Site.Params.paginationSize }}
     {{ end }}
 
-    {{ $paginator := .Paginate $pages $paginationSize }}
+    {{ $paginator := $.Paginate $pages $paginationSize }}
 
 
-    {{ with .Site.Params.homeCollectionEntry | default "post" }}
+    {{ with .entry | default "post" }}
     {{ $entryTemplate := printf "entries/%s.html" . }}
     {{ range $index, $page := $paginator.Pages }}
     {{ partial $entryTemplate $page}}
