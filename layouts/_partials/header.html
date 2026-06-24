@@ -1,39 +1,42 @@
 {{/* Header */}}
 
 <div class="header">
-    {{ if or (not (.Param "hideHeader")) .IsHome }}
-    <h1 class="header-title">
-        <a href="{{ site.BaseURL }}">{{ site.Title }}</a>
-    </h1>
+	{{ if or (not (.Param "hideHeader")) .IsHome }}
 
-    {{ with site.Menus.main }}
-    <nav class="header-menu">
-        {{ range . }}
-        {{- $ariaCurrent := "" -}}
-        {{- if $.IsMenuCurrent .Menu . -}}
-        {{- $ariaCurrent = "page" -}}
-        {{- else if $.HasMenuCurrent .Menu . -}}
-        {{- $ariaCurrent = "true" -}}
-        {{- end -}}
+		{{ if not (.Param "hideTitle") }}
+			<h1 class="header-title">
+				<a href="{{ site.BaseURL }}">{{ site.Title }}</a>
+			</h1>
+		{{ end }}
 
-        {{ if $ariaCurrent }}
-        <p class="small bold">
-            <a aria-current="{{ $ariaCurrent }}" href="{{ .URL }}">
-                /{{ .Name }}
-            </a>
-        </p>
-        {{ else }}
-        <p class="small">
-            <a href="{{ .URL }}">
-                /{{ .Name }}
-            </a>
-        </p>
-        {{ end }}
-        {{ end }}
-        {{ partial "components/theme-switch.html" }}
-    </nav>
-    {{ end }}
+		{{ with site.Menus.main }}
+			<nav class="header-menu">
+				{{ range . }}
+					{{- $ariaCurrent := "" -}}
+					{{- if $.IsMenuCurrent .Menu . -}}
+						{{- $ariaCurrent = "page" -}}
+					{{- else if $.HasMenuCurrent .Menu . -}}
+						{{- $ariaCurrent = "true" -}}
+					{{- end -}}
 
-    {{ end }}
+					{{ if $ariaCurrent }}
+						<p class="small bold">
+							<a aria-current="{{ $ariaCurrent }}" href="{{ .URL }}">
+								/{{ .Name }}
+							</a>
+						</p>
+					{{ else }}
+						<p class="small">
+							<a href="{{ .URL }}">
+								/{{ .Name }}
+							</a>
+						</p>
+					{{ end }}
+				{{ end }}
+				{{ partial "components/theme-switch.html" }}
+			</nav>
+		{{ end }}
+
+	{{ end }}
 
 </div>
