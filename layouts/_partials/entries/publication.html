@@ -1,19 +1,19 @@
 <div class="post-line">
 
-    {{ $dateFormat := "Jan 2006"}}
-    {{ with .Site.Params.publicationDateFormat }}
-    {{ $dateFormat = . }}
-    {{ end }}
+	{{ $dateFormat := "Jan 2006" }}
+	{{ with .Site.Params.publicationDateFormat }}
+		{{ $dateFormat = . }}
+	{{ end }}
 
-    <div>
-        <p class="line-title">
-            <a href="{{ .RelPermalink }}">
-                {{ .Title }}
-            </a>
-        </p>
+	<div>
+		<p class="line-title">
+			<a href="{{ .RelPermalink }}">
+				{{ .Title }}
+			</a>
+		</p>
 
-        <div class="line-summary">{{ delimit .Params.authors ", " " and " }}</div>
+		<div class="line-summary">{{ delimit .Params.authors ", " " and " }}</div>
 
-        {{ partial "badges.html" . }}
-    </div>
+		{{ partial "badges.html" . }}
+	</div>
 </div>

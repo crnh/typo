@@ -1,17 +1,16 @@
-{{- 
-  $favicons := (dict
-    "favicon.ico" (dict "rel" "icon" "type" "image/ico")
-    "favicon-16x16.png" (dict "rel" "icon" "type" "image/png" "sizes" "16x16")
-    "favicon-32x32.png" (dict "rel" "icon" "type" "image/png" "sizes" "32x32")
-    "favicon-96x96.png" (dict "rel" "icon" "type" "image/png" "sizes" "96x96")
-    "android-chrome-192x192.png" (dict "rel" "icon" "type" "image/png" "sizes" "192x192")
-    "apple-touch-icon.png" (dict "rel" "apple-touch-icon" "sizes" "180x180")
-    "site.webmanifest" (dict "rel" "manifest" "type" "application/manifest+json")
-) 
+{{- $favicons := (dict
+	"favicon.ico" (dict "rel" "icon" "type" "image/ico")
+	"favicon-16x16.png" (dict "rel" "icon" "type" "image/png" "sizes" "16x16")
+	"favicon-32x32.png" (dict "rel" "icon" "type" "image/png" "sizes" "32x32")
+	"favicon-96x96.png" (dict "rel" "icon" "type" "image/png" "sizes" "96x96")
+	"android-chrome-192x192.png" (dict "rel" "icon" "type" "image/png" "sizes" "192x192")
+	"apple-touch-icon.png" (dict "rel" "apple-touch-icon" "sizes" "180x180")
+	"site.webmanifest" (dict "rel" "manifest" "type" "application/manifest+json")
+	)
 -}}
 
 {{ range $filename, $attrs := $favicons }}
-  {{ with resources.Get (printf "favicons/%s" $filename) }}
-    <link rel="{{ $attrs.rel }}" type="{{ $attrs.type }}" {{ with $attrs.sizes }}sizes="{{ . }}"{{ end }} href="{{ .RelPermalink }}">
-  {{ end }}
+	{{ with resources.Get (printf "favicons/%s" $filename) }}
+		<link rel="{{ $attrs.rel }}" type="{{ $attrs.type }}" {{ with $attrs.sizes }}sizes="{{ . }}"{{ end }} href="{{ .RelPermalink }}">
+	{{ end }}
 {{ end }}

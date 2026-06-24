@@ -2,7 +2,7 @@
   "name": "tekst",
   "displayName": "Tekst",
   "scripts": {
-    "format": "prettier --write **/*.{js,css,yaml,toml}"
+    "format": "prettier --write **/*.{js,css,yaml,toml} && gotmplfmt -w layouts"
   },
   "devDependencies": {
     "prettier": "^3.8.3",

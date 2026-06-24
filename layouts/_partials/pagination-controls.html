@@ -1,29 +1,29 @@
 {{ if gt .TotalPages 1 }}
-<div class="pagination">
-    <div class="pagination-control">
-    {{ if .HasPrev }}
-        <a href="{{ .First.URL | absURL }}">
-            &laquo;
-        </a>
-        <a href="{{ .Prev.URL | absURL }}">
-            &#x2039;
-        </a>
-    {{ end }}
-    </div>
-    <div class="page-number">
-        <p>
-            {{ .PageNumber }}/{{ .TotalPages }}
-        </p>
-    </div>
-    <div class="pagination-control">
-    {{ if .HasNext }}
-        <a href="{{ .Next.URL | absURL }}">
-            &#x203A;
-        </a>
-        <a href="{{ .Last.URL | absURL }}">
-            &raquo;
-        </a>
-    {{ end }}
-    </div>
-</div>
+	<div class="pagination">
+		<div class="pagination-control">
+			{{ if .HasPrev }}
+				<a href="{{ .First.URL | absURL }}">
+					&laquo;
+				</a>
+				<a href="{{ .Prev.URL | absURL }}">
+					&#x2039;
+				</a>
+			{{ end }}
+		</div>
+		<div class="page-number">
+			<p>
+				{{ .PageNumber }}/{{ .TotalPages }}
+			</p>
+		</div>
+		<div class="pagination-control">
+			{{ if .HasNext }}
+				<a href="{{ .Next.URL | absURL }}">
+					&#x203A;
+				</a>
+				<a href="{{ .Last.URL | absURL }}">
+					&raquo;
+				</a>
+			{{ end }}
+		</div>
+	</div>
 {{ end }}

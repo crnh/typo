@@ -11,9 +11,9 @@
 {{ $context := .context }}
 
 {{ if not (hasSuffix $hook ".html") }}
-    {{ $hook = printf "%s.html" $hook }}
+	{{ $hook = printf "%s.html" $hook }}
 {{ end }}
 
 {{ if templates.Exists (path.Join "_partials/hooks" $hook) }}   
-    {{ partial (path.Join "hooks" $hook) $context }}
+	{{ partial (path.Join "hooks" $hook) $context }}
 {{ end }}

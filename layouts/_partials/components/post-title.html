@@ -1,6 +1,6 @@
 <h1 {{ if .IsPage }}class="single-title"{{ end }}>
-{{ with .Params.icon }}
-    {{ partial "components/emoji.html" . }}
-{{ end }}
-{{ .Title }}
+	{{ with .Params.icon }}
+		{{ partial "components/emoji.html" . }}
+	{{ end }}
+	{{ .Title }}
 </h1>

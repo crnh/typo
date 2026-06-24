@@ -1,16 +1,16 @@
 {{/* Mermaid support */}}
 
 {{ if .Store.Get "hasMermaid" }}
-{{ $mermaidDarkTheme := default "dark" (or .Params.mermaidDarkTheme .Site.Params.mermaidDarkTheme) }}
-{{ $mermaidTheme := default "default" (or .Params.mermaidTheme .Site.Params.mermaidTheme) }}
-{{- with resources.Get "js/mermaid.js" | js.Build (dict "minify" true) | fingerprint -}}
+	{{ $mermaidDarkTheme := default "dark" (or .Params.mermaidDarkTheme .Site.Params.mermaidDarkTheme) }}
+	{{ $mermaidTheme := default "default" (or .Params.mermaidTheme .Site.Params.mermaidTheme) }}
+	{{- with resources.Get "js/mermaid.js" | js.Build (dict "minify" true) | fingerprint -}}
 <script defer
-    type="module"
-    id="mermaid_script"
-    data-light-theme="{{ $mermaidTheme }}"
-    data-dark-theme="{{ $mermaidDarkTheme }}"
-    src="{{ .RelPermalink }}"
-    integrity="{{ .Data.Integrity }}">
+			type="module"
+			id="mermaid_script"
+			data-light-theme="{{ $mermaidTheme }}"
+			data-dark-theme="{{ $mermaidDarkTheme }}"
+			src="{{ .RelPermalink }}"
+			integrity="{{ .Data.Integrity }}">
 </script>
-{{- end -}}
+	{{- end -}}
 {{ end }}

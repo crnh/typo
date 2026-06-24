@@ -1,22 +1,22 @@
 <div class="list-container">
 
-    {{ partial "breadcrumbs.html" . }}
+	{{ partial "breadcrumbs.html" . }}
 
-    {{ partial "components/post-title.html" . }}
-    
-    {{ .Content }}
+	{{ partial "components/post-title.html" . }}
 
-    {{ $paginationSize := 1}}
-    {{ if (gt .Site.Params.paginationSize 0) }}
-    {{ $paginationSize = .Site.Params.paginationSize }}
-    {{ end }}
+	{{ .Content }}
 
-    {{ $paginator := .Paginate (.Pages) $paginationSize }}
+	{{ $paginationSize := 1 }}
+	{{ if (gt .Site.Params.paginationSize 0) }}
+		{{ $paginationSize = .Site.Params.paginationSize }}
+	{{ end }}
 
-    {{ range $index, $page := $paginator.Pages }}
-    {{ templates.Inner $page }}
-    {{ end }}
+	{{ $paginator := .Paginate (.Pages) $paginationSize }}
 
-    {{ partial "pagination-controls.html" $paginator}}
+	{{ range $index, $page := $paginator.Pages }}
+		{{ templates.Inner $page }}
+	{{ end }}
+
+	{{ partial "pagination-controls.html" $paginator }}
 
 </div>

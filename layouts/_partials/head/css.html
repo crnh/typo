@@ -1,7 +1,7 @@
 {{- $colorPalette := index hugo.Data.themes (.Site.Params.colorPalette | default "default") -}}
 
 {{- if not $colorPalette -}}
-  {{- errorf "Color palette '%s' not found in data/themes" .Site.Params.colorPalette -}}
+	{{- errorf "Color palette '%s' not found in data/themes" .Site.Params.colorPalette -}}
 {{- end -}}
 
 {{- $fonts := resources.Get "css/fonts.css" -}}
@@ -10,11 +10,11 @@
 {{- $styles := resources.Get "css/main.css" | css.Build $opts -}}
 
 {{ with slice $fonts $styles | resources.Concat "css/bundle.css" }}
-  {{ if hugo.IsDevelopment }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}" media="all">
-  {{ else }}
-    {{ with . | minify | fingerprint }}
-      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" media="all">
-    {{ end }}
-  {{ end }}
+	{{ if hugo.IsDevelopment }}
+		<link rel="stylesheet" href="{{ .RelPermalink }}" media="all">
+	{{ else }}
+		{{ with . | minify | fingerprint }}
+			<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" media="all">
+		{{ end }}
+	{{ end }}
 {{ end }}

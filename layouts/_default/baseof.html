@@ -2,56 +2,56 @@
 
 {{/* Page-specific extra scripts in footer */}}
 {{ with .Params.extraScripts | default slice }}
-  {{ if not (reflect.IsSlice .)}}
-    {{ errorf "The 'extraScripts' parameter must be a slice." }}
-  {{ end }}
-  {{ $.Store.Set "extraScripts" . }}
+	{{ if not (reflect.IsSlice .) }}
+		{{ errorf "The 'extraScripts' parameter must be a slice." }}
+	{{ end }}
+	{{ $.Store.Set "extraScripts" . }}
 {{ end }}
 
 {{ $theme := .Param "theme" | default "auto" }}
 <html lang="{{ or site.Language.Locale site.Language.Lang }}"
-  dir="{{ or site.Language.Direction `ltr` }}"
-  {{ if not (eq (.Param "theme") "auto") }}data-theme="{{ $theme }}"{{ end }}>
+	dir="{{ or site.Language.Direction `ltr` }}"
+	{{ if not (eq (.Param "theme") "auto") }}data-theme="{{ $theme }}"{{ end }}>
 
-<head>
-  {{ partial "head.html" . }}
-</head>
+	<head>
+		{{ partial "head.html" . }}
+	</head>
 
-<body>
+	<body>
 
-  <div class="content">
-    <header>
-      {{ partial "header.html" . }}
-    </header>
+		<div class="content">
+			<header>
+				{{ partial "header.html" . }}
+			</header>
 
-    <main class="main">
-      {{ block "main" . }}{{ end }}
-    </main>
-  </div>
+			<main class="main">
+				{{ block "main" . }}{{ end }}
+			</main>
+		</div>
 
-  {{/* Body end hook */}}
-  {{ partial "functions/get_hook.html" (dict "hook" "body_end" "context" .) }}
+		{{/* Body end hook */}}
+		{{ partial "functions/get_hook.html" (dict "hook" "body_end" "context" .) }}
 
-  <footer>
-    {{ partial "footer.html" . }}
-  </footer>
+		<footer>
+			{{ partial "footer.html" . }}
+		</footer>
 
-  {{ if .Param "math" }}
-  {{ partialCached "math.html" . }}
-  {{ end }}
-</body>
+		{{ if .Param "math" }}
+			{{ partialCached "math.html" . }}
+		{{ end }}
+	</body>
 
-{{ with resources.Get "js/copy-code.ts" | js.Build (dict "minify" true) | fingerprint }}
+	{{ with resources.Get "js/copy-code.ts" | js.Build (dict "minify" true) | fingerprint }}
 <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" type="module" defer></script>
-{{ end }}
+	{{ end }}
 
-{{ range .Store.Get "extraScripts" }}
-  {{ with resources.Get . }}
-    {{ $script := . | js.Build (dict "minify" true) | fingerprint }}
+	{{ range .Store.Get "extraScripts" }}
+		{{ with resources.Get . }}
+			{{ $script := . | js.Build (dict "minify" true) | fingerprint }}
 <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" crossorigin="anonymous" type="module" defer></script>
-  {{ else }}
-    {{ errorf "Failed to load extra script: %s" . }}
-  {{ end }}
-{{ end }}
+		{{ else }}
+			{{ errorf "Failed to load extra script: %s" . }}
+		{{ end }}
+	{{ end }}
 
 </html>

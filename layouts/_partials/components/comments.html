@@ -1,7 +1,7 @@
 {{/* Comments */}}
 
 {{- if and .Site.Params.giscus.enable (not .Params.disableComment) }}
-<div class="single-comments">
-    {{ partial "comments.html" . }}
-</div>
+	<div class="single-comments">
+		{{ partial "comments.html" . }}
+	</div>
 {{- end }}

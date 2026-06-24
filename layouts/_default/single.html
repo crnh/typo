@@ -3,74 +3,74 @@
 {{/* Breadcrumbs */}}
 
 {{ if not .IsHome }}
-{{ partial "breadcrumbs.html" . }}
+	{{ partial "breadcrumbs.html" . }}
 {{ end }}
 
 <div {{ if .Param "autonumber" }} class="autonumber" {{ end }}>
-  <article>
-    <header class="single-intro-container">
-        {{- /* Title and Summary */}}
-        
-        {{ partial "components/post-title.html" . }}
-        {{- with .Param "summary" }}
-        <p class="single-summary">{{ . | markdownify }}</p>
-        {{- end }}
-   
-        {{- /* Date, Reading Time and Author */}}
-        {{ if or (or (.Param "author") (.Param "authorAvatarPath")) (or .Date (.Param "readTime")) }}
-        <div class="single-subsummary">
-          {{ with $.Param "authorAvatarPath" }}
-            <img src="{{ . }}" alt="Author Avatar" />
-          {{ end }}
-          <div>
-            {{ with .Param "author" }}
-            <p class="author"> {{- .}} </p>
-            {{ end }}
-            <p class="single-date">
-            {{- with .Date }}
-              {{- $dateMachine := . | time.Format "2006-01-02T15:04:05-07:00" }}
-              {{- $dateHuman := . | time.Format (default ":date_long" $.Site.Params.singleDateFormat) }}
-              <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-            {{- end }}
-        
-            {{- if .Param "readTime" }}
-              {{ if .Date }}&nbsp; · &nbsp;{{ end }}
-              {{- .ReadingTime }} min read
-            {{- end }}
-            </p>
-          </div>
-        </div>
-        {{- end}}
-        
-    </header>
-    
-    {{ partial "components/tags.html"}}
-    {{ partial "components/toc.html" . }}
-    
-    {{/* Page content */}}
-    <div class="single-content">
-      {{ .Content }}
-    </div>
-  </article>
-  
-  {{ partial "components/comments.html" . }}
-  {{ partial "components/mermaid.html" . }}
+	<article>
+		<header class="single-intro-container">
+			{{- /* Title and Summary */}}
 
-  {{/* Next prev controls */}}
+			{{ partial "components/post-title.html" . }}
+			{{- with .Param "summary" }}
+				<p class="single-summary">{{ . | markdownify }}</p>
+			{{- end }}
 
-  {{ if not (.Param "hidePagination") }}
-  {{ partial "pagination-single.html" . }}
-  {{ end }}
+			{{- /* Date, Reading Time and Author */}}
+			{{ if or (or (.Param "author") (.Param "authorAvatarPath")) (or .Date (.Param "readTime")) }}
+				<div class="single-subsummary">
+					{{ with $.Param "authorAvatarPath" }}
+						<img src="{{ . }}" alt="Author Avatar" />
+					{{ end }}
+					<div>
+						{{ with .Param "author" }}
+							<p class="author"> {{- . }} </p>
+						{{ end }}
+						<p class="single-date">
+							{{- with .Date }}
+								{{- $dateMachine := . | time.Format "2006-01-02T15:04:05-07:00" }}
+								{{- $dateHuman := . | time.Format (default ":date_long" $.Site.Params.singleDateFormat) }}
+								<time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+							{{- end }}
 
-  {{/* Back to top */}}
+							{{- if .Param "readTime" }}
+								{{ if .Date }}&nbsp; · &nbsp;{{ end }}
+								{{- .ReadingTime }} min read
+							{{- end }}
+						</p>
+					</div>
+				</div>
+			{{- end }}
 
-  {{ if not (.Param "hideBackToTop") }}
-  <div class="back-to-top">
-    <a href="#top">
-      back to top
-    </a>
-  </div>
-  {{ end }}
+		</header>
+
+		{{ partial "components/tags.html" }}
+		{{ partial "components/toc.html" . }}
+
+		{{/* Page content */}}
+		<div class="single-content">
+			{{ .Content }}
+		</div>
+	</article>
+
+	{{ partial "components/comments.html" . }}
+	{{ partial "components/mermaid.html" . }}
+
+	{{/* Next prev controls */}}
+
+	{{ if not (.Param "hidePagination") }}
+		{{ partial "pagination-single.html" . }}
+	{{ end }}
+
+	{{/* Back to top */}}
+
+	{{ if not (.Param "hideBackToTop") }}
+		<div class="back-to-top">
+			<a href="#top">
+				back to top
+			</a>
+		</div>
+	{{ end }}
 
 </div>
 
