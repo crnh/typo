@@ -1,0 +1,14 @@
+{{- if .IsHome -}}
+	{{ .Store.Set "json" (partial "json-ld/home" .) }}
+{{- else -}}
+	{{ $templateName := partial "functions/json-ld-template" (dict "section" .Section "kind" .Kind) }}
+	{{- if $templateName -}}
+		{{ .Store.Set "json" (partial $templateName .) }}
+	{{- end -}}
+{{- end -}}
+
+{{ with .Store.Get "json" }}
+<script type="application/ld+json">
+{{ . | safeJS }}
+</script>
+{{ end }}

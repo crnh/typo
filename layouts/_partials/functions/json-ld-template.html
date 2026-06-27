@@ -1,0 +1,11 @@
+{{ $section := .section }}
+{{ $kind := .kind }}
+{{ $templateName := "" }}
+
+{{ with index (site.Param "json-ld") $section }}
+	{{ with index . $kind }}
+		{{ $templateName = printf "json-ld/%s" . }}
+	{{ end }}
+{{ end }}
+
+{{ return $templateName }}

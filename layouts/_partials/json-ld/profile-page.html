@@ -1,0 +1,12 @@
+{{- $description := .Site.Params.description }}
+{
+"@type": "ProfilePage",
+"name": {{ .Site.Title | jsonify }},
+"url": {{ .Site.BaseURL | jsonify }}
+{{ with $description }},
+	"description": {{ . | jsonify }}
+{{ end }},
+"mainEntity": {
+"@id": {{ printf "%s#person" .Site.BaseURL | jsonify }}
+}
+}

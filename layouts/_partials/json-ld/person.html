@@ -1,0 +1,10 @@
+{{- $description := .Site.Params.description }}
+{
+"@type": "Person",
+"@id": {{ printf "%s#person" .Site.BaseURL | jsonify }},
+"url": {{ .Site.BaseURL | jsonify }},
+"name": {{ .Site.Title | jsonify }}
+{{ with $description }},
+	"description": {{ . | jsonify }}
+{{ end }}
+}

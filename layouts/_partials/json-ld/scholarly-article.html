@@ -1,0 +1,38 @@
+{{- $authors := .Params.authors }}
+{{- $tags := .Params.tags }}
+{{- $doi := .Params.doi }}
+{{- $journal := .Params.journal }}
+{{- $summary := .Summary | plainify }}
+{{- $modDate := .Lastmod }}{{ if $modDate.IsZero }}{{ $modDate = .Date }}{{ end }}
+{
+"@context": "https://schema.org",
+"@type": "ScholarlyArticle",
+"headline": {{ .Title | jsonify }},
+"url": {{ .Permalink | jsonify }},
+"datePublished": {{ .Date.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
+"dateModified": {{ $modDate.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
+"description": {{ $summary | jsonify }},
+"author": [
+{{- range $i, $a := $authors }}
+	{{- if $i }},{{ end }}
+	{"@type": "Person", "name": {{ $a | jsonify }}}
+{{- end }}
+],
+"isPartOf": [
+{"@id": {{ printf "%s%s/#collection" .Site.BaseURL .Section | jsonify }}}
+{{ with $journal }},
+	{"@type": "Periodical", "name": {{ . | jsonify }}}
+{{ end }}
+]{{ if or $doi $tags }},{{ end }}
+{{ with $doi }}
+	"identifier": {
+	"@type": "PropertyValue",
+	"propertyID": "DOI",
+	"value": {{ . | jsonify }}
+	},
+	"sameAs": {{ printf "https://doi.org/%s" . | jsonify }}
+{{ end }}
+{{ with $tags }}{{ if $doi }},{{ end }}
+	"keywords": {{ . | jsonify }}
+{{ end }}
+}

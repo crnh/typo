@@ -1,0 +1,11 @@
+{{- $description := .Params.description }}
+{
+"@context": "https://schema.org",
+"@type": "CollectionPage",
+"@id": {{ printf "%s#collection" .Permalink | jsonify }},
+"name": {{ .Title | jsonify }},
+"url": {{ .Permalink | jsonify }}
+{{ with $description }},
+	"description": {{ . | jsonify }}
+{{ end }}
+}

@@ -1,0 +1,24 @@
+{{- $altNames := .Site.Params.seo.alternateName }}
+{{- $langs := .Site.Params.seo.inLanguage }}
+{{- $description := .Site.Params.description }}
+{
+"@type": "WebSite",
+"@id": {{ printf "%s#website" .Site.BaseURL | jsonify }},
+"url": {{ .Site.BaseURL | jsonify }},
+"name": {{ .Site.Title | jsonify }},
+"publisher": {
+"@id": {{ printf "%s#person" .Site.BaseURL | jsonify }},
+},
+"copyrightHolder": {
+"@id": {{ printf "%s#person" .Site.BaseURL | jsonify }},
+}
+{{ with $description }},
+	"description": {{ . | jsonify }}
+{{ end }}
+{{ with $altNames }},
+	"alternateName": {{ . | jsonify }}
+{{ end }}
+{{ with $langs }},
+	"inLanguage": {{ index . 0 | jsonify }}
+{{ end }}
+}

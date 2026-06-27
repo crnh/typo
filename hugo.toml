@@ -9,11 +9,15 @@ extended = false
 min = "0.160.0"
 
 # Default config
+[markup]
+[markup.highlight]
+noClasses = false
+
 [params.breadcrumbs]
 enabled = true
 showCurrentPage = true
 home = "Home"
 
-[markup]
-[markup.highlight]
-noClasses = false
+[params.json-ld]
+posts = { page = "blog-posting", section = "collection-page" }
+publications = { page = "scholarly-article", section = "collection-page" }
